@@ -1,0 +1,12 @@
+- name: Install git
+  pacman:
+    name: git
+    state: present
+  tags:
+    - git
+    - base
+
+- name: Configuring git
+  shell: |
+    git config --global user.email "{{ user.git.email }}"
+    git config --global user.name "{{ user.git.name }}"

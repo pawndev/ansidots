@@ -1,0 +1,42 @@
+- name: Ensure tmux is installed
+  become: true
+  pacman:
+    name: tmux
+    state: present
+  tags:
+    - tmux
+
+- name: Create tmux plugins directory
+  file:
+    path: ~/.tmux/plugins
+    state: directory
+  tags:
+    - tmux
+
+- name: "Check if tpm folder exist."
+  stat: path=~/.tmux/plugins/tpm
+  register: tpm_folder
+  tags:
+    - zsh
+
+- name: Git clone tmux plugin manager
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: ~/.tmux/plugins/tpm
+    clone: true
+    update: true
+  when: tpm_folder.stat.exists == false
+  tags:
+    - tmux
+
+- name: Copy tmux config
+  copy:
+    src: tmux.conf
+    dest: ~/.tmux.conf
+  tags: 
+    - tmux
+
+# - name: Load tmux source
+#   command: tmux && tmux source ~/.tmux.conf
+#   tags:
+#     - tmux

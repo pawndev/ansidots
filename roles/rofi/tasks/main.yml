@@ -1,0 +1,42 @@
+- name: Ensure rofi is install
+  become: true
+  pacman:
+    name: rofi
+    state: present
+  tags:
+    - rofi
+
+- name: Ensure rofi config directory exists
+  file:
+    path: ~/.config/rofi
+    state: directory
+  tags:
+    - rofi
+
+- name: Git clone adi1090x/rofi themes
+  git:
+    repo: https://github.com/adi1090x/rofi.git
+    dest: "~/aur/rofi-themes"
+    clone: true
+    update: true
+  tags:
+    - rofi
+
+- name: Installing adi1090x/rofi fonts
+  shell: |
+    cd ~/aur/rofi-themes
+    cp -rf ./fonts/* ~/.local/share/fonts
+  tags:
+    - rofi
+
+- name: Clear and regenerate font cache
+  shell: |
+    fc-cache -f -v
+  tags:
+    - rofi
+
+- name: Installing adi1090x/rofi themes
+  shell: |
+    cp -rf ~/aur/rofi-themes/1080p/* ~/.config/rofi
+  tags:
+    - rofi

@@ -1,0 +1,10 @@
+- name: Install kubectl kustomize kctx kns
+  become: true
+  pacman:
+    name:
+      - kubectl
+      - kustomize
+      - kubectx
+    state: present
+  tags:
+    - k8s

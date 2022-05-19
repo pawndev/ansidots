@@ -1,0 +1,40 @@
+# vi: set ft=yaml :
+dotfiles_user_home: "{{ '~' | expanduser }}"
+dotfiles_home: "{{dotfiles_user_home}}/workspace/dotfiles"
+
+user:
+  name: pawndev
+  group: pawndev
+  git:
+    name: pawndev
+    email: "coquelet.c@gmail.com"
+
+
+aur:
+  helper: boulou
+  dir: aur
+  packages:
+    - yay
+    - nerd-fonts-jetbrains-mono
+    - ttf-material-design-icons
+    - nerd-fonts-roboto-mono
+    - CaskaydiaCove Nerd Font
+
+base_packages:
+  - curl
+  - jq
+  - wget
+  - tldr
+  - zenity
+  - htop
+  - base-devel
+  - ranger
+  - arandr
+  - maim
+  - xorg-xbacklight
+  - light
+  - xorg-xev
+  - xorg-xfd
+  - xclip
+  - mopidy
+  - bat

@@ -1,0 +1,82 @@
+env:
+  TERM: xterm-256color
+
+window:
+  padding:
+   x: 4
+   y: 3
+
+  # decorations: none
+
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  # history: 10000
+  history: 0
+
+font:
+  normal:
+    # family: "CaskaydiaCove Nerd Font Mono"
+    family: "JetBrainsMono Nerd Font"
+  bold:
+    family: "JetBrainsMono Nerd Font"
+  italic:
+    family: "JetBrainsMono Nerd Font"
+  bold_italic:
+    family: "JetBrainsMono Nerd Font"
+  size: 8.0
+
+# If `true`, bold text is drawn using the bright color variants.
+#draw_bold_text_with_bright_colors: false
+
+# one dark ( https://github.com/eendroroy/alacritty-theme/blob/master/themes/one_dark.yaml )
+colors:
+  primary:
+    background: '0x1e2127'
+    foreground: '0xabb2bf'
+
+  normal:
+    black:   '0x1e2127'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xd19a66'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0xabb2bf'
+
+  bright:
+    black:   '0x5c6370'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xd19a66'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0xffffff'
+
+# Background opacity
+#
+# Window opacity as a floating point number from `0.0` to `1.0`.
+# The value `0.0` is completely transparent and `1.0` is opaque.
+#background_opacity: 1.0
+
+#cursor:
+  # Cursor style
+  #style:
+    # Cursor shape
+    #
+    # Values for `shape`:
+    #   - ▇ Block
+    #   - _ Underline
+    #   - | Beam
+    #shape: Block
+
+    # Cursor blinking state
+    #
+    # Values for `blinking`:
+    #   - Never: Prevent the cursor from ever blinking
+    #   - Off: Disable blinking by default
+    #   - On: Enable blinking by default
+    #   - Always: Force the cursor to always blink
+    #blinking: Off

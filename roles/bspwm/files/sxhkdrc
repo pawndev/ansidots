@@ -1,0 +1,101 @@
+# Reload config map
+super + ctrl + r ; {b,s,p}
+    {bspc wm -r, pkill -USR1 -x sxhkd, polybar-msg cmd restart}
+
+super + Return
+    alacritty
+
+# Launch a filemanager
+super + e
+    thunar
+    
+# # Toggle fullscreen for current node
+# super + f; u
+#     bspc node -t \~fullscreen
+
+# # Toggle floating for current node
+# super + f; l
+#     bspc node -t \~floating
+
+super + space
+    rofi -show combi
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+super + shift + {1-9}
+    bspc node -d '^{1-9}'
+
+super + {h,j,k,l}
+	bspc node -f {west,south,north,east}
+
+super + {_,shift + }{a,b,c,d,e,0}
+      bspc {desktop -f,node -d} '^{1-5,5}' --follow 
+
+# bspwm {
+# Close or kill the focused node
+super + {_,shift + } q
+    bspc node -{c,k}
+
+super + {1-9}
+    bspc desktop -f '^{1-9}'
+
+super + u
+    bspc node -f any.urgent
+
+# screenshot
+#fullscreen screenshot save
+super + ctrl + s
+    maim "/home/$USER/Pictures/screenshot/$(date).png"
+
+#cropped save
+super + shift + ctrl + s
+    maim --select "/home/$USER/Pictures/$(date).png"
+
+#  clipboard fullscreen
+super + s
+     maim | xclip -selection clipboard -t image/png
+
+# clipboard cropped
+super + shift + s
+    maim --select | xclip -selection clipboard -t image/png
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest.local
+
+# focus the last node/desktop
+alt + Tab
+	bspc node -f last
+
+alt + shift + Tab
+	bspc desktop -f last
+
+# Audio
+XF86AudioMute
+    amixer -q -D pulse sset Master +1 toggle &
+
+XF86Audio{Lower,Raise}Volume
+    amixer -q -D pulse sset Master 2%{-,+} unmute &
+
+# TODO: Working  media action
+# XF86Audio{Play,Prev,Next,Stop}
+#     ~/bin/mediacontrolkeys.sh {PlayPause,Previous,Next,Stop} &
+
+
+# NOT WORKING
+# XF86MonBrightness{Up,Down}
+#     xbacklight -{inc,dec} 5 &
+
+# # Control the screen brightness
+# XF86MonBrightness{Up,Down}
+#     light -{A,U} 5
+
+# # Control the keyboard backlight
+# XF86KbdBrightness{Up,Down}
+#     light -s $BWM_KBD_BACKLIGHT -{A,U} 15

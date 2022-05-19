@@ -1,0 +1,45 @@
+- name: Install base packages
+  become: true
+  pacman:
+    name: "{{base_packages}}"
+    state: present
+  tags:
+    - packages
+
+- name: Create AUR directory
+  file: path=/home/{{ user.name }}/{{ aur.dir }}
+        state=directory
+        owner={{ user.name }}
+        group={{ user.group }}
+  tags:
+    - aur
+    - packages
+
+- name: Install yay helper
+  when: aur.helper == "yay"
+  shell: |
+    git clone https://aur.archlinux.org/yay.git /home/{{user.name}}/{{aur.dir}}
+    cd /home/{{user.name}}/{{aur.dir}}/yay
+    makepkg -si
+  tags:
+    - aur
+    - packages
+
+- name: Install paru helper
+  when: aur.helper == "paru"
+  shell: |
+    git clone https://aur.archlinux.org/paru.git
+    cd /home/{{user.name}}/{{aur.dir}}/paru
+    makepkg -si
+  tags:
+    - aur
+    - packages
+
+# - name: Install base AUR packages
+#   kewlfft.aur.aur:
+#     state: present
+#     name: "{{aur.packages}}"
+#     use: "{{aur.helper}}"
+#   tags:
+#     - aur
+#     - packages

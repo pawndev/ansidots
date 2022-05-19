@@ -1,0 +1,14 @@
+- hosts: localhost
+  collections:
+    - kewlfft.aur
+  roles:
+    - {role: base, tags: ['base', 'packages', 'sudo', git]}
+    - {role: alacritty, tags: ['alacritty']}
+    - {role: zsh, tags: ['zsh']}
+    - {role: tmux, tags: ['tmux']}
+    - {role: bspwm, tags: ['bspwm']}
+    - {role: rofi, tags: ['rofi']}
+    - {role: fonts, tags: ['fonts']}
+    - {role: 1password, tags: ['1password']}
+    - {role: docker, tags: ['docker']}
+    - {role: k8s, tags: ['k8s']}

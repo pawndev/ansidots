@@ -1,0 +1,94 @@
+- name: Ensure bspwm is installed
+  become: true
+  pacman:
+    name: bspwm
+    state: present
+  tags:
+    - bspwm
+
+- name: Ensure sxhkd is installed
+  become: true
+  pacman:
+    name: sxhkd
+    state: present
+  tags:
+    - bspwm
+
+- name: Ensure polybar is installed
+  become: true
+  pacman:
+    name: polybar
+    state: present
+  tags:
+    - bspwm
+
+- name: Ensure wmname is installed
+  become: true
+  pacman:
+    name: wmname
+    state: present
+  tags:
+    - bspwm
+
+- name: Create bspwm directory
+  file:
+    path: ~/.config/bspwm
+    state: directory
+  tags:
+    - bspwm
+
+- name: Create bspwm scripts directory
+  file:
+    path: ~/.config/bspwm/scripts
+    state: directory
+  tags:
+    - bspwm
+
+- name: Create sxhkd directory
+  file:
+    path: ~/.config/sxhkd
+    state: directory
+  tags:
+    - bspwm
+
+- name: Create polybar directory
+  file:
+    path: ~/.config/polybar
+    state: directory
+  tags:
+    - bspwm
+
+- name: Copy bspwm config
+  copy:
+    src: bspwmrc
+    dest: ~/.config/bspwm/bspwmrc
+  tags: 
+    - bspwm
+
+- name: Copy sxhkd config
+  copy:
+    src: sxhkdrc
+    dest: ~/.config/sxhkd/sxhkdrc
+  tags: 
+    - bspwm
+
+- name: Copy polybar config
+  copy:
+    src: polybar.ini
+    dest: ~/.config/polybar/config.ini
+  tags: 
+    - bspwm
+
+- name: Copy polybar launch script
+  copy:
+    src: polybar-launch.sh
+    dest: ~/.config/polybar/launch.sh
+  tags: 
+    - bspwm
+
+- name: Copy bspwm autostart script
+  copy:
+    src: scripts/autostart.sh
+    dest: ~/.config/bspwm/scripts/autostart.sh
+  tags: 
+    - bspwm

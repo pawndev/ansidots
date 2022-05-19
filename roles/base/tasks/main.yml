@@ -1,0 +1,27 @@
+- name: Refresh pacman mirrors
+  become: true
+  pacman:
+    update_cache: yes
+  tags:
+    - base
+
+- name: Install inetutils for hostname
+  become: true
+  pacman:
+    name: inetutils
+    state: present
+  when: hostname is defined
+  tags:
+    - base
+
+- name: Set the hostname
+  become: true
+  hostname:
+    name: "{{ hostname }}"
+  when: hostname is defined
+  tags:
+    - base
+
+- include: sudo.yml
+- include: packages.yml
+- include: git.yml

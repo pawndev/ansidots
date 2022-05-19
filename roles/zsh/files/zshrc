@@ -1,0 +1,125 @@
+if [[ $DISPLAY ]]; then
+    # If not running interactively, do not do anything
+    [[ $- != *i* ]] && return
+    # Only start tmux when opening a "real" terminal emulator
+    [[ -z "$TMUX" && "$TERM_PROGRAM" != "vscode" ]] && exec tmux
+fi
+
+export AWS_PROFILE=etf1awsaccess
+
+# Exports {{{
+export TERM="screen-256color"
+export LC_CTYPE="en_US.UTF-8"
+export VISUAL="nvim"
+export EDITOR="nvim"
+
+export BAT_THEME="OneHalfDark"
+export FZF_DEFAULT_OPTS="--preview 'bat --color \"always\" {} 2> /dev/null | head -200'"
+export YSU_MODE=ALL
+
+# zplug
+export NVM_LAZY_LOAD=false
+export NVM_AUTO_USE=false
+
+export USER_GOPATH="$HOME/workspace/go"
+export SYSTEM_GOPATH="/usr/lib/go"
+export GOPATH="$USER_GOPATH:$SYSTEM_GOPATH"
+# export GOROOT="/usr/lib/go/bin"
+
+export PATH="$PATH:$USER_GOPATH/bin:$HOME/.config/composer/vendor/bin:$HOME/.composer/vendor/bin:$HOME/bin:$HOME/.local/bin"
+# }}}
+
+# Config {{{
+setopt prompt_subst
+# }}}
+
+# Plugins {{{
+source ~/.zplug/init.zsh
+
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-autosuggestions"
+zplug "rupa/z", use:z.sh
+zplug "junegunn/fzf", as:command, hook-build:"./install --bin", use:"bin/{fzf-tmux,fzf}"
+zplug "lib/history", from:oh-my-zsh
+zplug "plugins/docker-compose",   from:oh-my-zsh
+zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/vi-mode",   from:oh-my-zsh
+zplug "plugins/docker",   from:oh-my-zsh
+zplug "plugins/cp",   from:oh-my-zsh
+zplug "MichaelAquilina/zsh-you-should-use"
+zplug "lukechilds/zsh-nvm"
+zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+
+zplug load
+# /zplug
+# }}}
+
+# Alias {{{
+alias k="kubectl"
+alias kctx="kubectx"
+alias kns="kubens"
+alias vi="nvim"
+alias vim="nvim"
+alias re-zsh="source ~/.zshrc"
+alias zshrc="nvim ~/.dotfiles/zsh/zshrc"
+alias vimrc="nvim ~/.dotfiles/nvim/init.vim"
+alias tx="tmuxinator"
+alias v="nvim ."
+alias dps-name="docker ps --format '{{.Names}}'"
+# Common aliases
+alias disk="df -H | grep -vE '^Filesystem|tmpfs|cdrom'"
+alias :q="exit"
+alias spotiplay="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+alias spotinext="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+alias spotiprev="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+alias spotistop="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+
+# List directory contents
+alias d='dirs -v | head -10'
+ls --color -d . &>/dev/null && alias ls='ls --color=tty' || { ls -G . &>/dev/null && alias ls='ls -G' }
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+
+# }}}
+
+# PluginConfig {{{
+  # zsh-history-substring-search {{{
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+  # }}}
+
+# }}}
+
+# Functions {{{
+function vzf() {
+  local file=$(fzf)
+
+  if [ -n "$file" ]; then
+		${EDITOR:-nvim} "$file"
+	fi
+}
+
+function op-sign() {
+  eval $(op signin my)
+}
+
+function opon() {
+  token=$(op signin my --output=raw)
+  echo $token > ~/.op/session
+}
+
+function myip() {
+    curl ipecho.net/plain; echo
+}
+
+function privateip() {
+    ip -o route get 8.8.8.8 | sed -e 's/^.* src \([^ ]*\) .*$/\1/'
+}
+
+function showmem() {
+    ps -eo size,pid,user,command --sort -size | awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }' | grep -v grep | grep $1
+}

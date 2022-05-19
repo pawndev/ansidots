@@ -1,0 +1,72 @@
+- name: Ensure zsh is installed
+  pacman:
+    name: zsh
+    state: present
+  tags:
+    - zsh
+
+- name: Set up zsh as default shell
+  become: yes
+  user:
+    name: "{{user.name}}"
+    shell: /bin/zsh
+  tags:
+    - zsh
+
+- name: "Check if .zplug folder exist."
+  stat: path=~/.zplug
+  register: zplug_folder
+  tags:
+    - zsh
+
+# - name: Install zplug
+#   command: "git clone https://github.com/b4b4r07/zplug {{dotfiles_user_home}}/{{aur.dir}}"
+#   when: zplug_folder.stat.exists == false
+#   tags:
+#     - zsh
+
+# - name: Change zplug folder owner
+#   file:
+#     path: "{{dotfiles_user_home}}/{{aur.dir}}"
+#     state: directory
+#     owner: "{{ user.name }}"
+#     group: "{{ user.group }}"
+#     recurse: yes
+
+
+- name: Download zplug
+  get_url:
+    url: https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
+    dest: "{{dotfiles_user_home}}/zplug_installer.zsh"
+    mode: 0755
+    owner: "{{user.name}}"
+    group: "{{user.group}}"
+  # command: curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh > {{dotfiles_user_home}}/zplug_installer.zsh
+  when: zplug_folder.stat.exists == false
+  tags:
+    - zsh
+
+- name: Install zplug
+  command: zsh {{dotfiles_user_home}}/zplug_installer.zsh
+  when: zplug_folder.stat.exists == false
+  tags:
+    - zsh
+
+- name: Copy zshrc
+  copy:
+    src: zshrc
+    dest: ~/.zshrc
+  tags: 
+    - zsh
+- debug:
+    msg: "source $ZPLUG_HOME/init.zsh"
+
+# - name: Install zplug plugins
+#   command: /bin/zsh zplug install
+#   tags:
+#     - zsh
+
+- name: Remove zplug installer
+  file:
+    state: absent
+    path: "{{dotfiles_user_home}}/zplug_installer.zsh"

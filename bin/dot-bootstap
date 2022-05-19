@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "setting up local dev environment"
+
+if ![ -x "$(command -v ansible)" ]; then
+	sudo pacman -S ansible
+fi
+
+ansible-playbook -i ~/workspace/dotfiles/hosts ~/workspace/dotfiles/local_env.yml --ask-become-pass

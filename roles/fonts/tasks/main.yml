@@ -1,0 +1,27 @@
+- name: Ensure fonts directory exists
+  file:
+    path: ~/.local/share/fonts
+    state: directory
+  tags:
+    - fonts
+
+# siji taken from here: https://github.com/khanhas/Polybar/blob/master/%40Resources/Fonts/siji.ttf
+# jetbrainsmonoNL taken from: https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/JetBrainsMono/NoLigatures/Regular/complete/JetBrains%20Mono%20NL%20Regular%20Nerd%20Font%20Complete.ttf
+- name: Install material design icon font
+  copy: src={{ item }} dest=~/.local/share/fonts/
+  with_items:
+    - Material.ttf
+    - materialdesignicons-webfont.ttf
+    - materialdesignicons-webfont.woff
+    - materialdesignicons-webfont.woff2
+    - MaterialIcons-Regular.ttf
+    - siji.ttf
+    - JetBrains Mono NL Regular Nerd Font Complete.ttf
+  tags:
+    - fonts
+
+- name: Clear and regenerate font cache
+  shell: |
+    fc-cache -f -v
+  tags:
+    - fonts
