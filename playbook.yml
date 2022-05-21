@@ -2,7 +2,9 @@
   collections:
     - kewlfft.aur
   roles:
-    - {role: base, tags: ['base', 'packages', 'sudo', git]}
+    - {role: base, tags: ['base', 'packages', 'sudo', 'git']}
+    - {role: userscripts, tags: ['userscripts']}
+    - {role: wallpaper, tags: ['wallpaper']}
     - {role: alacritty, tags: ['alacritty']}
     - {role: zsh, tags: ['zsh']}
     - {role: tmux, tags: ['tmux']}
@@ -12,3 +14,4 @@
     - {role: 1password, tags: ['1password']}
     - {role: docker, tags: ['docker']}
     - {role: k8s, tags: ['k8s']}
+    - {role: notification, tags: ['notification']}

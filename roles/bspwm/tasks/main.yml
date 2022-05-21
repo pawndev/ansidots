@@ -90,5 +90,6 @@
   copy:
     src: scripts/autostart.sh
     dest: ~/.config/bspwm/scripts/autostart.sh
+    mode: a+x
   tags: 
     - bspwm

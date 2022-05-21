@@ -1,0 +1,33 @@
+- name: Create .bin folder
+  file:
+    path: ~/.bin
+    state: directory
+  tags:
+    - userscripts
+
+- name: Ensure dependencies installed
+  become: true
+  pacman:
+    name:
+      - i3lock
+      - scrot
+      - playerctl
+    state: present
+  tags:
+    - userscripts
+
+- name: Copy icon
+  copy:
+    src: nyarch.webp
+    dest: ~/Pictures/
+  tags: 
+    - bspwm
+
+- name: Move user scripts
+  become: true
+  copy: src={{ item }} dest=/usr/local/bin mode=a+x
+  with_items:
+    - i3exit.sh
+    - volume.sh
+  tags: 
+    - userscripts

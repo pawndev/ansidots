@@ -1,0 +1,21 @@
+- name: Installing dunst notifications
+  become: true
+  pacman:
+    name: dunst
+    state: present
+  tags:
+    - notification
+
+- name: Ensure dunst config directory exists
+  file:
+    path: ~/.config/dunst
+    state: directory
+  tags:
+    - notification
+
+- name: Copy dunst config file
+  copy:
+    src: dunst.cfg
+    dest: ~/.config/dunst/dunstrc
+  tags:
+    - notification

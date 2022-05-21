@@ -36,9 +36,18 @@ bspc config window_gap            10
 bspc config split_ratio           0.50
 bspc config gapless_monocle       true
 bspc config focus_follows_pointer true
+# Don’t replay the click that makes a window focused if click_to_focus isn’t none.
+bspc config swallow_first_click true
 
 # permit to focus with btn1 & btn3
 bspc config click_to_focus any
+
+# Floating rules {{{
+bspc rule -a Nm-connection-editor state=floating
+bspc rule -a \*:\*:feh_quicklook state=floating
+bspc rule -a Arandr state=floting
+bspc rule -a flameshot state=floating
+# }}}
 
 # Fix for Java app not working correctly.
 # See here https://wiki.archlinux.org/index.php/bspwm#Problems_with_Java_applications
@@ -48,9 +57,4 @@ wmname LG3D
 #bspc config normal_border_color "#353b45"
 
 # autostart up applications 
-# ~/.config/polybar/launch.sh &
-# picom & 
-# feh --bg-fill ~/Pictures/wall/neon.png &
-# xrdb merge ~/.Xresources &
-# sxhkd &
 source ~/.config/bspwm/scripts/autostart.sh

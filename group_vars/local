@@ -19,6 +19,8 @@ aur:
     - ttf-material-design-icons
     - nerd-fonts-roboto-mono
     - CaskaydiaCove Nerd Font
+    - kora-icon-theme
+    - system-monitoring-center
 
 base_packages:
   - curl
@@ -38,3 +40,5 @@ base_packages:
   - xclip
   - mopidy
   - bat
+  - scrot
+  - flameshot

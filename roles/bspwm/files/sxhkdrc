@@ -77,15 +77,19 @@ alt + shift + Tab
 	bspc desktop -f last
 
 # Audio
+# amixer -q -D pulse sset Master +1 toggle &
 XF86AudioMute
-    amixer -q -D pulse sset Master +1 toggle &
+    volume.sh +1 toggle
 
+# amixer -q -D pulse sset Master 2%{-,+} unmute &
 XF86Audio{Lower,Raise}Volume
-    amixer -q -D pulse sset Master 2%{-,+} unmute &
+    volume.sh 2%{-,+} unmute
 
-# TODO: Working  media action
-# XF86Audio{Play,Prev,Next,Stop}
-#     ~/bin/mediacontrolkeys.sh {PlayPause,Previous,Next,Stop} &
+{_,ctrl} + XF86Audio{Prev,Next,Play,Stop}
+    playerctl --player={spotify,mopidy} {previous,next,play-pause,stop}
+
+super + ctrl + {shift,alt} + {Left,Right}
+    playerctl --player={spotify,mopidy} {previous,next}
 
 
 # NOT WORKING

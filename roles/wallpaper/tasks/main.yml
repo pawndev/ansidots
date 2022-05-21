@@ -1,0 +1,22 @@
+- name: Create wallpaper directory
+  file:
+    path: ~/Pictures/Wallpapers
+    state: directory
+  tags:
+    - wallpaper
+
+- name: Install feh
+  become: true
+  pacman:
+    name: feh
+    state: present
+  tags:
+    - wallpaper
+
+- name: Move all wallpaper
+  copy: src={{ item }} dest=~/Pictures/Wallpapers
+  with_items:
+    - ffxiv-endwalker.png
+    - ffxiv-meteion.png
+  tags:
+    - wallpaper
