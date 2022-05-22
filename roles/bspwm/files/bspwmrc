@@ -47,6 +47,7 @@ bspc rule -a Nm-connection-editor state=floating
 bspc rule -a \*:\*:feh_quicklook state=floating
 bspc rule -a Arandr state=floting
 bspc rule -a flameshot state=floating
+bspc rule -a 1Password state=floating
 # }}}
 
 # Fix for Java app not working correctly.

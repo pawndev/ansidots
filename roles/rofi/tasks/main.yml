@@ -13,10 +13,10 @@
   tags:
     - rofi
 
-- name: Git clone adi1090x/rofi themes
+- name: Git clone fork of adi1090x/rofi themes
   git:
-    repo: https://github.com/adi1090x/rofi.git
-    dest: "~/aur/rofi-themes"
+    repo: git@github.com:pawndev/rofi-scripts.git
+    dest: "~/workspace/github/rofi-scripts"
     clone: true
     update: true
   tags:
@@ -24,7 +24,7 @@
 
 - name: Installing adi1090x/rofi fonts
   shell: |
-    cd ~/aur/rofi-themes
+    cd ~/workspace/github/rofi-themes
     cp -rf ./fonts/* ~/.local/share/fonts
   tags:
     - rofi
@@ -37,6 +37,6 @@
 
 - name: Installing adi1090x/rofi themes
   shell: |
-    cp -rf ~/aur/rofi-themes/1080p/* ~/.config/rofi
+    cp -rf ~/workspace/github/rofi-themes/1080p/* ~/.config/rofi
   tags:
     - rofi

@@ -18,7 +18,10 @@ super + e
 #     bspc node -t \~floating
 
 super + space
-    rofi -show combi
+    rofi -show drun -display-drun Apps:
+
+super + Tab
+    rofi -show window -theme sidebar -display-window OpenApps::
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
@@ -90,6 +93,9 @@ XF86Audio{Lower,Raise}Volume
 
 super + ctrl + {shift,alt} + {Left,Right}
     playerctl --player={spotify,mopidy} {previous,next}
+
+super + Escape
+    /home/pawndev/workspace/github/rofi-scripts/1080p/bin/./menu_powermenu
 
 
 # NOT WORKING
