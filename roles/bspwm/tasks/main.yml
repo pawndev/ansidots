@@ -93,3 +93,20 @@
     mode: a+x
   tags: 
     - bspwm
+
+- name: Copy openvpn script
+  copy:
+    src: scripts/vpn-openvpn-status.sh
+    dest: ~/.config/bspwm/scripts/vpn-openvpn-status.sh
+    mode: a+x
+  tags: 
+    - bspwm
+
+- name: Copy ovpn script
+  become: true
+  copy:
+    src: scripts/ovpn.sh
+    dest: /usr/local/bin/ovpn.sh
+    mode: a+x
+  tags: 
+    - bspwm
