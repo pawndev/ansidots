@@ -26,7 +26,7 @@ export SYSTEM_GOPATH="/usr/lib/go"
 export GOPATH="$USER_GOPATH:$SYSTEM_GOPATH"
 # export GOROOT="/usr/lib/go/bin"
 
-export PATH="$PATH:$USER_GOPATH/bin:$HOME/.config/composer/vendor/bin:$HOME/.composer/vendor/bin:$HOME/bin:$HOME/.local/bin"
+export PATH="$PATH:$USER_GOPATH/bin:$HOME/.config/composer/vendor/bin:$HOME/.composer/vendor/bin:$HOME/bin:$HOME/.local/bin:$HOME/.poetry/bin"
 # }}}
 
 # Config {{{
@@ -58,6 +58,7 @@ zplug load
 
 # Alias {{{
 alias k="kubectl"
+alias kk="kustomize"
 alias kctx="kubectx"
 alias kns="kubens"
 alias vi="nvim"
@@ -68,6 +69,7 @@ alias vimrc="nvim ~/.dotfiles/nvim/init.vim"
 alias tx="tmuxinator"
 alias v="nvim ."
 alias dps-name="docker ps --format '{{.Names}}'"
+alias aws-sso="aws sso login"
 # Common aliases
 alias disk="df -H | grep -vE '^Filesystem|tmpfs|cdrom'"
 alias :q="exit"
@@ -123,3 +125,5 @@ function privateip() {
 function showmem() {
     ps -eo size,pid,user,command --sort -size | awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }' | grep -v grep | grep $1
 }
+
+source <(kustomize completion zsh)

@@ -24,7 +24,7 @@ font:
     family: "JetBrainsMono Nerd Font"
   bold_italic:
     family: "JetBrainsMono Nerd Font"
-  size: 8.0
+  size: 7.0
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
