@@ -94,7 +94,15 @@
   tags: 
     - bspwm
 
-- name: Copy openvpn script
+- name: Copy bspwm external rules config
+  copy:
+    src: scripts/bspwm-external-rules.sh
+    dest: ~/.config/bspwm/scripts/bspwm-external-rules.sh
+    mode: a+x
+  tags: 
+    - bspwm
+
+- name: Copy openvpn polybar module script
   copy:
     src: scripts/vpn-openvpn-status.sh
     dest: ~/.config/bspwm/scripts/vpn-openvpn-status.sh
@@ -102,7 +110,7 @@
   tags: 
     - bspwm
 
-- name: Copy ovpn script
+- name: Copy ovpn.sh script
   become: true
   copy:
     src: scripts/ovpn.sh

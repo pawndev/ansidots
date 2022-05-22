@@ -42,3 +42,4 @@ base_packages:
   - bat
   - scrot
   - flameshot
+  - xorg-xwininfo

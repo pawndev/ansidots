@@ -45,9 +45,12 @@ bspc config click_to_focus any
 # Floating rules {{{
 bspc rule -a Nm-connection-editor state=floating
 bspc rule -a \*:\*:feh_quicklook state=floating
-bspc rule -a Arandr state=floting
+bspc rule -a Arandr state=floating
 bspc rule -a flameshot state=floating
 bspc rule -a 1Password state=floating
+bspc rule -a alacrittyvpn state=floating
+
+bspc config external_rules_command ~/.config/bspwm/scripts/bspwm-external-rules.sh
 # }}}
 
 # Fix for Java app not working correctly.
