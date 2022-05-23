@@ -4,7 +4,8 @@
 # Arbitrary but unique message tag
 msgTag="myvolume"
 
-amixer -c 0 set Master "$@" > /dev/null
+# amixer -c 0 set Master "$@" > /dev/null
+amixer -q -D pulse sset Master "$@" > /dev/null
 # amixer -q -D pulse sset Master 2%{-,+} unmute
 
 # Query amixer for the current volume and whether or not the speaker is muted
