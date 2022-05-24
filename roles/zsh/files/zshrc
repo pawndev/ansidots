@@ -70,6 +70,7 @@ alias tx="tmuxinator"
 alias v="nvim ."
 alias dps-name="docker ps --format '{{.Names}}'"
 alias aws-sso="aws sso login"
+alias get-touchpad="xinput list | grep Touchpad"
 # Common aliases
 alias disk="df -H | grep -vE '^Filesystem|tmpfs|cdrom'"
 alias :q="exit"
