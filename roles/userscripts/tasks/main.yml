@@ -29,5 +29,6 @@
   with_items:
     - i3exit.sh
     - volume.sh
+    - bright.sh
   tags: 
     - userscripts

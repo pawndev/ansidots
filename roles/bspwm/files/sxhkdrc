@@ -129,14 +129,5 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# NOT WORKING
-# XF86MonBrightness{Up,Down}
-#     xbacklight -{inc,dec} 5 &
-
-# # Control the screen brightness
-# XF86MonBrightness{Up,Down}
-#     light -{A,U} 5
-
-# # Control the keyboard backlight
-# XF86KbdBrightness{Up,Down}
-#     light -s $BWM_KBD_BACKLIGHT -{A,U} 15
+XF86MonBrightness{Up,Down}
+    bright.sh -{A,U} 2
