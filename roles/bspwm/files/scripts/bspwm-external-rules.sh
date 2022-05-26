@@ -31,6 +31,10 @@ main() {
             # Useful if Telegram is not on its default desktop
             [[ $name == "Media viewer" ]] && rules+=( "desktop=focused" )
             ;;
+        1Password)
+            [[ $name == "1Password" ]] && rules+=("state=floating center=on rectangle=${WIDTH}x${HEIGHT}+0+0")
+            [[ $name == "Quick Access — 1Password" ]] && rules+=("state=floating center=on")
+            ;;
         "")
             sleep 0.5
 
