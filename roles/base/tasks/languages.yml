@@ -1,0 +1,21 @@
+- name: Install golang
+  become: true
+  pacman:
+    name: go
+    state: present
+  tags:
+    - lang
+
+- name: Install rustup
+  become: true
+  pacman:
+    name: rustup
+    state: present
+  tags:
+    - lang
+
+- name: Use latest rust version
+  shell: |
+    rustup update
+  tags:
+    - lang

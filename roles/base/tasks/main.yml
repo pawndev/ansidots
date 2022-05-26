@@ -25,3 +25,4 @@
 - include: sudo.yml
 - include: packages.yml
 - include: git.yml
+- include: languages.yml

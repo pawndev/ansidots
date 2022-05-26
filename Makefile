@@ -1,4 +1,4 @@
-.PHONY: init all alacritty zsh tmux 1password bspwm rofi fonts git docker k8s notif userscripts wallpaper
+.PHONY: init all alacritty zsh tmux 1password bspwm rofi fonts git docker k8s notif userscripts wallpaper lang eww
 
 init:
 	ansible-galaxy collection install -r requirements.yml
@@ -44,3 +44,9 @@ userscripts:
 
 wallpaper:
 	ansible-playbook -i hosts playbook.yml --ask-become-pass --tags wallpaper
+
+lang:
+	ansible-playbook -i hosts playbook.yml --ask-become-pass --tags lang
+
+eww:
+	ansible-playbook -i hosts playbook.yml --ask-become-pass --tags eww
