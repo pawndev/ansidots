@@ -15,3 +15,4 @@
     - {role: docker, tags: ['docker']}
     - {role: k8s, tags: ['k8s']}
     - {role: notification, tags: ['notification']}
+    - {role: eww, tags: ['eww']}

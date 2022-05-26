@@ -1,0 +1,22 @@
+- name: Cloning eww project
+  git:
+    repo: https://github.com/elkowar/eww
+    dest: ~/aur/eww
+    clone: true
+    update: true
+  tags:
+    - eww
+
+- name: Building eww
+  shell: |
+    cd ~/aur/eww
+    cargo build --release
+    cd target/release
+    chmod +x ./eww
+
+- name: Move eww to local bin
+  become: true
+  copy:
+    src: ~/aur/eww/target/release/eww
+    dest: /usr/local/bin/eww
+    mode: a+x
