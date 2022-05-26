@@ -2,7 +2,7 @@ if [[ $DISPLAY ]]; then
     # If not running interactively, do not do anything
     [[ $- != *i* ]] && return
     # Only start tmux when opening a "real" terminal emulator
-    [[ -z "$TMUX" && "$TERM_PROGRAM" != "vscode" ]] && exec tmux
+    [[ -z "$TMUX" && "$TERM_PROGRAM" != "vscode" && "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]] && exec tmux
 fi
 
 export AWS_PROFILE=etf1awsaccess
