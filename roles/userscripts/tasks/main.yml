@@ -12,6 +12,7 @@
       - i3lock
       - scrot
       - playerctl
+      - light
     state: present
   tags:
     - userscripts
