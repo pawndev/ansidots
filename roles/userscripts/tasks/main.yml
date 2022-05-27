@@ -13,6 +13,7 @@
       - scrot
       - playerctl
       - light
+      - mpv
     state: present
   tags:
     - userscripts
@@ -31,5 +32,6 @@
     - i3exit.sh
     - volume.sh
     - bright.sh
+    - lofi.sh
   tags: 
     - userscripts

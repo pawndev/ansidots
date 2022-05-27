@@ -91,6 +91,9 @@ XF86Audio{Lower,Raise}Volume
 {_,ctrl} + XF86Audio{Prev,Next,Play,Stop}
     playerctl --player={spotify,mopidy} {previous,next,play-pause,stop}
 
+super + XF86AudioPlay
+    lofi.sh &
+
 super + ctrl + {shift,alt} + {Left,Right}
     playerctl --player={spotify,mopidy} {previous,next}
 
