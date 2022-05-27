@@ -11,7 +11,9 @@ menu(){
     printf "3. Box Lofi\n"
     printf "4. The Bootleg Boy\n"
     printf "5. Radio Spinner\n"
-    printf "6. SmoothChill"
+    printf "6. SmoothChill\n"
+    printf "7. TSF Jazz\n"
+    printf "8. Classic FM\n"
 }
 
 main() {
@@ -19,12 +21,12 @@ main() {
     case $choice in
     1)
         notification "Lofi Girl";
-        mpv "https://play.streamafrica.net/lofiradio"
+        mpv "https://www.youtube.com/watch?v=5qap5aO4i9A" --no-video
         break
         ;;
     2)
         notification "Chillhop";
-        mpv "http://stream.zeno.fm/fyn8eh3h5f8uv"
+        mpv "https://www.youtube.com/watch?v=5yx6BWlEVcY" --no-video
         break
         ;;
     3)
@@ -34,7 +36,7 @@ main() {
         ;;
     4)
         notification "The Bootleg Boy";
-        mpv "http://stream.zeno.fm/0r0xa792kwzuv"
+        mpv "https://www.youtube.com/watch?v=vq3IvvNe7VY" --no-video
         break
         ;;
     5)
@@ -45,6 +47,16 @@ main() {
     6)
         notification "SmoothChill";
         mpv "https://media-ssl.musicradio.com/SmoothChill"
+        break
+        ;;
+    7)
+        notification "TSF Jazz";
+        mpv "https://tsfjazz.ice.infomaniak.ch/tsfjazz-high.mp3"
+        break
+        ;;
+    8)
+        notification "Classic FM"
+        mpv "https://media-ssl.musicradio.com/ClassicFM"
         break
         ;;
     esac
