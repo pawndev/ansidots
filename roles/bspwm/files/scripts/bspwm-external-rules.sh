@@ -14,11 +14,11 @@ WIDTH=$(echo $(( (${SCREEN_WIDTH}/4)*3)) | cut -f1 -d".")
 HEIGHT=$(echo $(( (${SCREEN_HEIGHT}/4)*3)) | cut -f1 -d".")
 
 main() {
-    echo "" > /tmp/log/boulou.txt
-    echo "WID: $wid" >> /tmp/log/boulou.txt
-    echo "class: $class" >> /tmp/log/boulou.txt
-    echo "instance: $instance" >> /tmp/log/boulou.txt
-    echo "name: $name" >> /tmp/log/boulou.txt
+    echo "" > /tmp/boulou.txt
+    echo "WID: $wid" >> /tmp/boulou.txt
+    echo "class: $class" >> /tmp/boulou.txt
+    echo "instance: $instance" >> /tmp/boulou.txt
+    echo "name: $name" >> /tmp/boulou.txt
     case "$class" in
         [Pp]hototonic)
             rules+=( "state=floating center=on rectangle=${WIDTH}x${HEIGHT}+0+0" )
@@ -34,6 +34,9 @@ main() {
         1Password)
             [[ $name == "1Password" ]] && rules+=("state=floating center=on rectangle=${WIDTH}x${HEIGHT}+0+0")
             [[ $name == "Quick Access — 1Password" ]] && rules+=("state=floating center=on")
+            ;;
+        Yad)
+            [[ $name == "yad-calendar" ]] && rules+=("state=floating")
             ;;
         "")
             sleep 0.5
@@ -52,7 +55,7 @@ main() {
             rules+=( "state = floating" )
             ;;
     esac
-    echo "rules: $rules" >>/tmp/log/boulou.txt
+    echo "rules: $rules" >>/tmp/boulou.txt
     echo "$rules"
 }
 

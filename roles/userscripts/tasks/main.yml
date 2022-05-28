@@ -15,6 +15,7 @@
       - light
       - mpv
       - youtube-dl
+      - yad
     state: present
   tags:
     - userscripts
@@ -34,5 +35,6 @@
     - volume.sh
     - bright.sh
     - lofi.sh
+    - popup-calendar.sh
   tags: 
     - userscripts
