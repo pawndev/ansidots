@@ -14,9 +14,9 @@ format_current_song() {
 main() {
     has_break=1
     for t in ${players[@]}; do
-        status=$(get_player_status $t)
+        status=$(get_player_status $t  2>&1)
         if [[ "$status" == "Playing" ]]; then
-            echo $(format_current_song $t)
+            echo "$(format_current_song $t)"
             has_break = 0
             break;
         fi
