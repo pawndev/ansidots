@@ -113,10 +113,11 @@ super + f; l
 super + f; s
     bspc node -g sticky
 
-# Toggle tiled or pseudo tile for current node
+# Toggle tiled for current node
 super + f; t
     bspc node -t \~tiled
 
+# Toggle pseudo tile for current node
 super + f; p
     bspc node -t \~pseudo_tiled
 
