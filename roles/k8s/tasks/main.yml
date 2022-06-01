@@ -1,10 +1,41 @@
-- name: Install kubectl kustomize kctx kns
+- name: Install kustomize
   become: true
   pacman:
     name:
-      - kubectl
       - kustomize
-      - kubectx
+      # - kubectl
+      # - kubectx
     state: present
+  tags:
+    - k8s
+
+- name: Download kubectl v1.23
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/v1.23.6/bin/linux/amd64/kubectl
+    dest: /tmp/kubectl
+  tags:
+    - k8s
+
+- name: Download kubectx
+  get_url:
+    url: https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubectx
+    dest: /tmp/kubectx
+  tags:
+    - k8s
+
+- name: Download kubens
+  get_url:
+    url: https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubens
+    dest: /tmp/kubens
+  tags:
+    - k8s
+
+- name: Copy kubectl, kubectx, kubens to local bin
+  become: true
+  copy: src={{ item }} dest=/usr/local/bin mode=a+x
+  with_items:
+    - /tmp/kubectl
+    - /tmp/kubectx
+    - /tmp/kubens
   tags:
     - k8s
