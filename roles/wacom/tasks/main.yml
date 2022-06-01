@@ -1,0 +1,5 @@
+- name: Install xf86-input-wacom 
+  pacman:
+    name: xf86-input-wacom
+    state: present
+

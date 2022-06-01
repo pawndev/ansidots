@@ -16,3 +16,4 @@
     - {role: k8s, tags: ['k8s']}
     - {role: notification, tags: ['notification']}
     - {role: eww, tags: ['eww']}
+    - {role: wacom, tags: ['wacom']}

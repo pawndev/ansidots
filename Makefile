@@ -1,4 +1,4 @@
-.PHONY: init all alacritty zsh tmux 1password bspwm rofi fonts git docker k8s notif userscripts wallpaper lang eww
+.PHONY: init all alacritty zsh tmux 1password bspwm rofi fonts git docker k8s notif userscripts wallpaper lang eww wacom
 
 init:
 	ansible-galaxy collection install -r requirements.yml
@@ -50,3 +50,6 @@ lang:
 
 eww:
 	ansible-playbook -i hosts playbook.yml --ask-become-pass --tags eww
+
+wacom:
+	ansible-playbook -i hosts playbook.yml --ask-become-pass --tags wacom
