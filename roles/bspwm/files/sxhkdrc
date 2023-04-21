@@ -42,7 +42,7 @@ super + {_,shift + } q
     bspc node -{c,k}
 
 super + {1-9}
-    bspc desktop -f '^{1-9}'
+    bspc desktop -f 'focused:^{1-9}'
 
 super + u
     bspc node -f any.urgent

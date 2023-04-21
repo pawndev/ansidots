@@ -20,43 +20,51 @@ main() {
     choice=$(menu | rofi -dmenu | cut -d. -f1)
     case $choice in
     1)
-        notification "Lofi Girl";
-        mpv "https://www.youtube.com/watch?v=5qap5aO4i9A" --no-video
+        title="Lofi Girl"
+        notification "$title";
+        mpv "https://www.youtube.com/watch?v=5qap5aO4i9A" --no-video --title="$title"
         break
         ;;
     2)
-        notification "Chillhop";
-        mpv "https://www.youtube.com/watch?v=5yx6BWlEVcY" --no-video
+        title="Chillhop"
+        notification "$title";
+        mpv "https://www.youtube.com/watch?v=5yx6BWlEVcY" --no-video --title="$title"
         break
         ;;
     3)
-        notification "Box Lofi";
-        mpv "http://stream.zeno.fm/f3wvbbqmdg8uv"
+        title="Box Lofi"
+        notification "$title";
+        mpv "http://stream.zeno.fm/f3wvbbqmdg8uv" --title="$title"
         break
         ;;
     4)
-        notification "The Bootleg Boy";
-        mpv "https://www.youtube.com/watch?v=vq3IvvNe7VY" --no-video
+        title="The Bootleg Boy"
+        notification "$title";
+        mpv "https://www.youtube.com/watch?v=vq3IvvNe7VY" --no-video --title="$title"
         break
         ;;
     5)
-        notification "Radio Spinner";
-        mpv "https://live.radiospinner.com/lofi-hip-hop-64"
+        title="Radio Spinner"
+        notification "$title";
+        mpv "https://live.radiospinner.com/lofi-hip-hop-64" --title="$title"
         break
         ;;
     6)
-        notification "SmoothChill";
-        mpv "https://media-ssl.musicradio.com/SmoothChill"
+        title="SmoothChill"
+        notification "$title";
+        mpv "https://media-ssl.musicradio.com/SmoothChill" --title="$title"
         break
         ;;
     7)
-        notification "TSF Jazz";
-        mpv "https://tsfjazz.ice.infomaniak.ch/tsfjazz-high.mp3"
+        title="TSF Jazz"
+        notification "$title";
+        mpv "https://tsfjazz.ice.infomaniak.ch/tsfjazz-high.mp3" --title="$title"
         break
         ;;
     8)
-        notification "Classic FM"
-        mpv "https://media-ssl.musicradio.com/ClassicFM"
+        title="Classic FM"
+        notification "$title"
+        mpv "https://media-ssl.musicradio.com/ClassicFM" --title="$title"
         break
         ;;
     esac

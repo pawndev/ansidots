@@ -1,10 +1,10 @@
 #!/bin/bash
 
-  # CONFIG_NAME="etf1_aws.ovpn"
-  # VPN_PATH="$HOME/.vpn"
-  CONFIG_NAME="efebe5d6xbf04x4cd0xb77ax1663ad1015e7"
-  VPN_PATH="/net/openvpn/v3/configuration"
+  CONFIG_NAME="etf1_aws.ovpn"
+  VPN_PATH="$HOME/.vpn"
   CMD=$1
+
+  function parseBaseOptions() {}
 
   function usage() {
     echo "USAGE: ovpn <command>"
@@ -15,26 +15,40 @@
     echo "logout"
     echo "toggle"
     echo "getname"
+    echo "import <name-config> <path-to-config-file>"
     exit 1
   }
 
+  echoerr() { printf "%s\n" "$*" >&2; }
+
+  function ovpnimport() {
+    #   openvpn3 config-import
+    configname=$1
+    configfile=$2
+    if [ -z $configname ]; then
+        echoerr "Missing argument name: Please give us a name for your config"
+        exit 128
+    fi
+
+    if [ -z $configfile ]; then
+        echoerr "Missing argument filepath: Please give us the file path for your config"
+        exit 128
+    fi
+    openvpn3 config-import --name "$configname" --config "$configfile"
+  }
+
   function ovpnlogin() {
-    openvpn3 session-start --config-path "$VPN_PATH/$CONFIG_NAME"
+    openvpn3 session-start --config "$VPN_PATH/$CONFIG_NAME"
     echo -n "All done!"
   }
 
   function ovpnstat() {
     tmux rename-window vpn
-    watch -n30 openvpn3 session-stats --path "$VPN_PATH/$CONFIG_NAME"
+    watch -n30 openvpn3 session-stats --config "$VPN_PATH/$CONFIG_NAME"
   }
 
   function ovpnlogout() {
-    openvpn3 session-manage --path "$VPN_PATH/$CONFIG_NAME" -D
-    echo -n "All done!"
-  }
-
-  function ovpnrestart() {
-    openvpn3 session-manage --path "$VPN_PATH/$CONFIG_NAME" --restart
+    openvpn3 session-manage --config "$VPN_PATH/$CONFIG_NAME" -D
     echo -n "All done!"
   }
 
@@ -60,8 +74,8 @@
       "stat") ovpnstat;;
       "logout") ovpnlogout;;
       "toggle") ovpntoggle;;
-      "restart") ovpnrestart;;
       "getname") ovpngetname;;
+      "import") ovpnimport $2 $3;;
       *)
         echo -n "unknown"
         ;;
@@ -75,4 +89,4 @@
     tmux rename-window zsh
   }
 
-  [ -z "$CMD" ] && usage || parseArgs
+  [ -z "$CMD" ] && usage || parseArgs $@
