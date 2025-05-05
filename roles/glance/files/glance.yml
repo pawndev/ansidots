@@ -1,0 +1,129 @@
+pages:
+  - name: Home
+    # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+    hide-desktop-navigation: true
+    columns:
+      - size: small
+        widgets:
+          - type: calendar
+            first-day-of-week: monday
+
+          - type: rss
+            limit: 10
+            collapse-after: 3
+            cache: 12h
+            feeds:
+              - url: https://blog.pawndev.com/index.xml
+                title: Pawndev
+                limit: 4
+              - url: https://blog.ogenki.io/index.xml
+                title: Smaine
+                limit: 4
+              - url: https://retrohandhelds.gg/feed/
+                title: retrohandhelds.gg
+                limit: 4
+              - url: https://korben.info/feed
+                title: Korben
+                limit: 4
+
+      - size: full
+        widgets:
+          - type: group
+            widgets:
+              - type: hacker-news
+              - type: lobsters
+                tags:
+                  - go
+                  - programming
+                  - release
+                  - dotnet
+                  - rust
+                  - zig
+                  - linux
+                  - windows
+                  - wasm
+                  - api
+                  - debugging
+                  - devops
+                  - performance
+                  - practices
+                  - reversing
+                  - testing
+                  - virtualization
+                  - compilers
+                  - databases
+                  - editors
+                  - vcs
+                  - vim
+              - type: lobsters
+                instance-url: https://www.journalduhacker.net/
+
+          - type: group
+            widgets:
+              - type: reddit
+                subreddit: golang
+                show-thumbnails: true
+              - type: reddit
+                subreddit: trimui
+                show-thumbnails: true
+              - type: reddit
+                subreddit: miyoo
+                show-thumbnails: true
+              - type: reddit
+                subreddit: SBCGaming
+                show-thumbnails: true
+              - type: reddit
+                subreddit: selfhosted
+                show-thumbnails: true
+
+          - type: videos
+            channels:
+              # - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
+              - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
+              - UCwUiHJUm1wpSaUXiQt_H12A # Joey retro handheld
+              - UCoZQiN0o7f36H7PaW4fVhFw # Retro game corps
+              - UCDsdjYgVORwLficCmpZi8eg # Retro decouverte
+
+      - size: small
+        widgets:
+          # - type: weather
+          #   location: Melun, France
+          #   units: metric # alternatively "imperial"
+          #   hour-format: 24h # alternatively "24h"
+            # optionally hide the location from being displayed in the widget
+            # hide-location: true
+          - type: server-stats
+            servers:
+              - type: local
+                name: services
+          - type: releases
+            cache: 1d
+            collapse-after: -1
+            # Without authentication the Github API allows for up to 60 requests per hour. You can create a
+            # read-only token from your Github account settings and use it here to increase the limit.
+            # token: ...
+            repositories:
+              - repository: glanceapp/glance
+              - repository: cizia64/CrossMix-OS
+              - repository: OnionUI/Onion
+              - repository: knulli-cfw/distribution
+              - repository: spruceUI/spruceOS
+              - repository: TheGammaSqueeze/GammaOS
+              - repository: ro8inmorgan/LedControl
+              - repository: tenlevels/PakUI
+              - repository: shauninman/MinUI
+
+  # Add more pages here:
+  # - name: Your page name
+  #   columns:
+  #     - size: small
+  #       widgets:
+  #         # Add widgets here
+
+  #     - size: full
+  #       widgets:
+  #         # Add widgets here
+
+  #     - size: small
+  #       widgets:
+  #         # Add widgets here
